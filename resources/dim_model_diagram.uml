@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>b0b3fc4c-88b8-4771-87c8-28a70b50326e.TABLE:postgres.analytics.dim_team_memberships</OriginalElement>
+  <nodes>
+    <node x="392.125" y="335.0">b0b3fc4c-88b8-4771-87c8-28a70b50326e.TABLE:postgres.analytics.dim_team_memberships</node>
+    <node x="0.0" y="598.0">b0b3fc4c-88b8-4771-87c8-28a70b50326e.TABLE:postgres.analytics.fct_issues</node>
+    <node x="75.12499999999997" y="251.0">b0b3fc4c-88b8-4771-87c8-28a70b50326e.TABLE:postgres.analytics.fct_pull_requests</node>
+    <node x="437.625" y="0.0">b0b3fc4c-88b8-4771-87c8-28a70b50326e.TABLE:postgres.analytics.dim_teams</node>
+    <node x="151.74999999999997" y="60.0">b0b3fc4c-88b8-4771-87c8-28a70b50326e.TABLE:postgres.analytics.dim_users</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="b0b3fc4c-88b8-4771-87c8-28a70b50326e.TABLE:postgres.analytics.fct_issues" target="b0b3fc4c-88b8-4771-87c8-28a70b50326e.TABLE:postgres.analytics.fct_pull_requests">
+      <point x="74.25" y="-148.5" />
+      <point x="0.0" y="148.5" />
+    </edge>
+    <edge source="b0b3fc4c-88b8-4771-87c8-28a70b50326e.TABLE:postgres.analytics.dim_team_memberships" target="b0b3fc4c-88b8-4771-87c8-28a70b50326e.TABLE:postgres.analytics.dim_users">
+      <point x="-48.0" y="-64.5" />
+      <point x="440.125" y="226.0" />
+      <point x="270.0833333333333" y="226.0" />
+      <point x="47.33333333333334" y="40.5" />
+    </edge>
+    <edge source="b0b3fc4c-88b8-4771-87c8-28a70b50326e.TABLE:postgres.analytics.fct_issues" target="b0b3fc4c-88b8-4771-87c8-28a70b50326e.TABLE:postgres.analytics.dim_users">
+      <point x="-74.25" y="-148.5" />
+      <point x="74.25" y="573.0" />
+      <point x="64.62499999999997" y="573.0" />
+      <point x="64.62499999999997" y="226.0" />
+      <point x="175.41666666666663" y="226.0" />
+      <point x="-47.33333333333334" y="40.5" />
+    </edge>
+    <edge source="b0b3fc4c-88b8-4771-87c8-28a70b50326e.TABLE:postgres.analytics.fct_pull_requests" target="b0b3fc4c-88b8-4771-87c8-28a70b50326e.TABLE:postgres.analytics.dim_users">
+      <point x="2.8421709430404007E-14" y="-148.5" />
+      <point x="0.0" y="40.5" />
+    </edge>
+    <edge source="b0b3fc4c-88b8-4771-87c8-28a70b50326e.TABLE:postgres.analytics.dim_team_memberships" target="b0b3fc4c-88b8-4771-87c8-28a70b50326e.TABLE:postgres.analytics.dim_teams">
+      <point x="48.0" y="-64.5" />
+      <point x="0.0" y="100.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.4896174863387978" x="317.5" y="447.5" />
+  <SelectedNodes>
+    <node>b0b3fc4c-88b8-4771-87c8-28a70b50326e.TABLE:postgres.analytics.dim_users</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Key columns</Category>
+    <Category>Columns</Category>
+    <Category>Virtual foreign keys</Category>
+  </Categories>
+</Diagram>
+

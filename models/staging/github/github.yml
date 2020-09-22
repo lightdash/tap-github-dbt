@@ -1,0 +1,70 @@
+version: 2
+
+sources:
+  - name: github
+    schema: public
+    description: Data extracted from Github REST API using Singer.io tap
+
+    tables:
+      - name: comments
+      - name: commit_comments
+      - name: commits
+      - name: commits__files
+      - name: commits__parents
+      - name: events
+      - name: events__payload__commits
+      - name: issue_milestones
+      - name: issues
+      - name: issues__labels
+      - name: pr_commits
+      - name: pr_commits__files
+      - name: pr_commits__parents
+      - name: pull_requests
+      - name: pull_requests__labels
+      - name: review_comments
+      - name: reviews
+      - name: team_members
+      - name: team_memberships
+      - name: teams
+
+models:
+  - name: stg_github__comment_users
+  - name: stg_github__commit_comment_users
+  - name: stg_github__issue_users
+  - name: stg_github__issues
+    columns:
+      - name: issue_id
+        description: Primary key of the table
+        tests:
+          - unique
+          - not_null
+      - name: pull_request_id
+        tests:
+          - relationships:
+              to: ref('stg_github__pull_requests')
+              field: pull_request_id
+  - name: stg_github__milestone_creators
+  - name: stg_github__pull_requests
+    columns:
+      - name: pull_request_id
+        description: Primary key of the table
+        tests:
+          - unique
+          - not_null
+  - name: stg_github__team_members
+    columns:
+      - name: id
+        description: Primary key of the table
+        tests:
+          - unique
+          - not_null
+  - name: stg_github__team_memberships
+  - name: stg_github__teams
+    columns:
+      - name: team_id
+        description: Primary key of the table
+        tests:
+          - unique
+          - not_null
+
+

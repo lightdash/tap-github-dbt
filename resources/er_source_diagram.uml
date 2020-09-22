@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>b0b3fc4c-88b8-4771-87c8-28a70b50326e.SCHEMA:postgres.public</OriginalElement>
+  <nodes>
+    <node x="1486.0" y="0.0">b0b3fc4c-88b8-4771-87c8-28a70b50326e.TABLE:postgres.public.issue_milestones</node>
+    <node x="1102.0" y="0.0">b0b3fc4c-88b8-4771-87c8-28a70b50326e.TABLE:postgres.public.issues</node>
+    <node x="1606.0" y="1743.0">b0b3fc4c-88b8-4771-87c8-28a70b50326e.TABLE:postgres.public.commits__files</node>
+    <node x="1869.0" y="1743.0">b0b3fc4c-88b8-4771-87c8-28a70b50326e.TABLE:postgres.public.pr_commits__files</node>
+    <node x="838.0" y="1743.0">b0b3fc4c-88b8-4771-87c8-28a70b50326e.TABLE:postgres.public.teams</node>
+    <node x="359.0" y="778.0">b0b3fc4c-88b8-4771-87c8-28a70b50326e.TABLE:postgres.public.commit_comments</node>
+    <node x="718.0" y="682.0">b0b3fc4c-88b8-4771-87c8-28a70b50326e.TABLE:postgres.public.review_comments</node>
+    <node x="454.0" y="1743.0">b0b3fc4c-88b8-4771-87c8-28a70b50326e.TABLE:postgres.public.team_members</node>
+    <node x="0.0" y="1006.0">b0b3fc4c-88b8-4771-87c8-28a70b50326e.TABLE:postgres.public.reviews</node>
+    <node x="324.0" y="0.0">b0b3fc4c-88b8-4771-87c8-28a70b50326e.TABLE:postgres.public.commits</node>
+    <node x="722.0" y="2420.0">b0b3fc4c-88b8-4771-87c8-28a70b50326e.TABLE:postgres.public.commits__parents</node>
+    <node x="338.0" y="2420.0">b0b3fc4c-88b8-4771-87c8-28a70b50326e.TABLE:postgres.public.team_memberships</node>
+    <node x="1870.0" y="0.0">b0b3fc4c-88b8-4771-87c8-28a70b50326e.TABLE:postgres.public.events</node>
+    <node x="2397.0" y="1743.0">b0b3fc4c-88b8-4771-87c8-28a70b50326e.TABLE:postgres.public.pull_requests__labels</node>
+    <node x="0.0" y="2420.0">b0b3fc4c-88b8-4771-87c8-28a70b50326e.TABLE:postgres.public.events__payload__commits</node>
+    <node x="1222.0" y="1743.0">b0b3fc4c-88b8-4771-87c8-28a70b50326e.TABLE:postgres.public.pull_requests</node>
+    <node x="0.0" y="1743.0">b0b3fc4c-88b8-4771-87c8-28a70b50326e.TABLE:postgres.public.pr_commits</node>
+    <node x="2254.0" y="0.0">b0b3fc4c-88b8-4771-87c8-28a70b50326e.TABLE:postgres.public.comments</node>
+    <node x="985.0" y="2420.0">b0b3fc4c-88b8-4771-87c8-28a70b50326e.TABLE:postgres.public.pr_commits__parents</node>
+    <node x="2132.0" y="1743.0">b0b3fc4c-88b8-4771-87c8-28a70b50326e.TABLE:postgres.public.issues__labels</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="b0b3fc4c-88b8-4771-87c8-28a70b50326e.TABLE:postgres.public.review_comments" target="b0b3fc4c-88b8-4771-87c8-28a70b50326e.TABLE:postgres.public.commits">
+      <point x="0.0" y="-508.0" />
+      <point x="887.5" y="657.0" />
+      <point x="664.8333333333334" y="657.0" />
+      <point x="136.33333333333337" y="316.0" />
+    </edge>
+    <edge source="b0b3fc4c-88b8-4771-87c8-28a70b50326e.TABLE:postgres.public.reviews" target="b0b3fc4c-88b8-4771-87c8-28a70b50326e.TABLE:postgres.public.commits">
+      <point x="0.0" y="-184.0" />
+      <point x="169.5" y="657.0" />
+      <point x="392.16666666666663" y="657.0" />
+      <point x="-136.33333333333337" y="316.0" />
+    </edge>
+    <edge source="b0b3fc4c-88b8-4771-87c8-28a70b50326e.TABLE:postgres.public.commit_comments" target="b0b3fc4c-88b8-4771-87c8-28a70b50326e.TABLE:postgres.public.commits">
+      <point x="0.0" y="-412.0" />
+      <point x="0.0" y="316.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.16666666666666666" x="1302.0" y="1334.0" />
+  <SelectedNodes>
+    <node>b0b3fc4c-88b8-4771-87c8-28a70b50326e.TABLE:postgres.public.issues</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Key columns</Category>
+    <Category>Columns</Category>
+    <Category>Virtual foreign keys</Category>
+  </Categories>
+</Diagram>
+
