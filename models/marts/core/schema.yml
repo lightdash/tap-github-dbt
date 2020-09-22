@@ -1,0 +1,153 @@
+version: 2
+
+models:
+  - name: dim_users
+    description: This table has basic information about GitHub users
+
+    columns:
+      - name: user_id
+        description: This is a unique identifier for a user
+        tests:
+          - unique
+          - not_null
+
+      - name: user_name
+        description: User's login name
+
+  - name: dim_team_memberships
+    description: This table is a bridge to join users with teams
+    tests:
+      - unique:
+          column_name: "concat(CAST(team_id AS VARCHAR), CAST(user_id AS VARCHAR))"
+
+    columns:
+      - name: team_id
+        description: Unique identifier of the team
+        tests:
+          - relationships:
+              to: ref('dim_teams')
+              field: team_id
+      - name: user_id
+        description: Unique identifier of the user
+        tests:
+          - relationships:
+              to: ref('dim_users')
+              field: user_id
+      - name: role
+        description: Role of the user in the team (e.g. member or maintainer)
+      - name: state
+        description: Indicates if the user is active or inactive in the team
+
+  - name: dim_teams
+    description: This table has basic information about GitHub teams
+
+    columns:
+      - name: team_id
+        description: This is a unique identifier for a team_id
+        tests:
+          - unique
+          - not_null
+      - name: organization_id
+        description: Unique identifier of the GitHub organization where the team belongs to
+      - name: name
+        description: Screen name of the team
+      - name: slug
+        description: Slugified name of the team
+      - name: description
+        description: Description of the team
+      - name: privacy
+        description: Privacy of the team
+      - name: permission
+        description: Permission of the team in GitHub (e.g. push or pull)
+
+  - name: fct_issues
+    description: This table has basic information about GitHub issues
+
+    columns:
+      - name: issue_id
+        tests:
+          - unique
+          - not_null
+        description: This is a unique identifier for an issue
+
+      - name: pull_request_id
+        description: Foreign key to the pull requests table
+        tests:
+          - relationships:
+              to: ref('dim_pull_requests')
+              field: pull_request_id
+
+      - name: user_id
+        description: Foreign key to the users table
+        tests:
+          - relationships:
+              to: ref('dim_users')
+              field: user_id
+
+      - name: number
+        description: Number of the issue in the repository
+
+      - name: created_at
+        description: Date (UTC) that the issue was created
+
+      - name: updated_at
+        description: Date (UTC) that the issue was updated
+
+      - name: closed_at
+        description: Date (UTC) that the issue was closed
+
+      - name: state
+        description: Indicates either if the issue is open or closed
+
+      - name: repository
+        description: Repository in the form organization/repository
+
+      - name: title
+        description: Title of the issue
+
+      - name: body
+        description: Body of the issue
+
+  - name: fct_pull_requests
+    description: This table has basic information about GitHub Pull Requests
+
+    columns:
+      - name: pull_request_id
+        tests:
+          - unique
+          - not_null
+        description: This is a unique identifier for a Pull Request
+
+      - name: user_id
+        description: Foreign key to the users table
+        tests:
+          - relationships:
+              to: ref('dim_users')
+              field: user_id
+
+      - name: number
+        description: Number of the PR in the repository
+
+      - name: created_at
+        description: Date (UTC) that the PR was created
+
+      - name: updated_at
+        description: Date (UTC) that the PR was updated
+
+      - name: closed_at
+        description: Date (UTC) that the PR was closed
+
+      - name: merged_at
+        description: Date (UTC) that the PR was merged
+
+      - name: state
+        description: Indicates either if the PR is open or closed
+
+      - name: repository
+        description: Repository in the form organization/repository
+
+      - name: title
+        description: Title of the PR
+
+      - name: body
+        description: Body of the PR
