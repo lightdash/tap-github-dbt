@@ -8,7 +8,6 @@ sources:
 
     tables:
       - name: comments
-      - name: commit_comments
       - name: commits
       - name: commits__files
       - name: commits__parents
@@ -30,7 +29,6 @@ sources:
 
 models:
   - name: stg_github__comment_users
-  - name: stg_github__commit_comment_users
   - name: stg_github__issue_users
   - name: stg_github__issues
     columns:

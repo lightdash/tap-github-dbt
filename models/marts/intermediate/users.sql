@@ -9,9 +9,6 @@ milestone_creators AS (
 comment_users AS (
     SELECT * FROM {{ ref('stg_github__comment_users')}}
 ),
-commit_comment_users AS (
-    SELECT * FROM {{ ref('stg_github__commit_comment_users')}}
-),
 team_members AS (
  SELECT * FROM {{ ref('stg_github__team_members')}}
 ),
@@ -21,8 +18,6 @@ duplicated_users AS (
     SELECT * FROM milestone_creators
     UNION ALL
     SELECT * FROM comment_users
-    UNION ALL
-    SELECT * FROM commit_comment_users
     UNION ALL
     SELECT * FROM team_members
     ),
