@@ -2,7 +2,8 @@ version: 2
 
 sources:
   - name: github
-    schema: public
+    database: "{{ var('tap_github_raw_database') }}"
+    schema: "{{ var('tap_github_raw_schema') }}"
     description: Data extracted from Github REST API using Singer.io tap
 
     tables:

@@ -1,7 +1,0 @@
-{
-    "postgres_host": "localhost",
-    "postgres_username": "postgres",
-    "postgres_password": "postgres",
-    "postgres_database": "postgres",
-    "postgres_schema": "public"
-}

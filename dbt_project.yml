@@ -1,4 +1,4 @@
-name: 'tap_github_dbt'
+name: 'tap_github'
 version: '1.0.0'
 config-version: 2
 
@@ -16,3 +16,11 @@ clean-targets:
     - "target"
     - "dbt_modules"
 
+models:
+  tap_github:
+    marts:
+      +materialized: table
+    staging:
+      +materialized: view
+      base:
+        +materialized: ephemeral
