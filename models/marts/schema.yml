@@ -69,6 +69,12 @@ models:
           - unique
           - not_null
         description: This is a unique identifier for an issue
+        meta:
+          metrics:
+            count: 
+              type: count_distinct
+
+
 
       - name: pull_request_id
         description: Foreign key to the pull requests table
@@ -83,6 +89,11 @@ models:
           - relationships:
               to: ref('dim_users')
               field: user_id
+        meta:
+          metrics:
+            total_users:
+              type: count_distinct
+
 
       - name: number
         description: Number of the issue in the repository
@@ -117,6 +128,10 @@ models:
           - unique
           - not_null
         description: This is a unique identifier for a Pull Request
+        meta:
+          metrics:
+            count: 
+              type: count_distinct
 
       - name: user_id
         description: Foreign key to the users table
