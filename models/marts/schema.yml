@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: users
+  - name: dim_users
     description: This table has basic information about GitHub users
 
     columns:
@@ -14,7 +14,7 @@ models:
       - name: user_name
         description: User's login name
 
-  - name: team_memberships
+  - name: dim_team_memberships
     description: This table is a bridge to join users with teams
     tests:
       - unique:
@@ -25,20 +25,20 @@ models:
         description: Unique identifier of the team
         tests:
           - relationships:
-              to: ref('teams')
+              to: ref('dim_teams')
               field: team_id
       - name: user_id
         description: Unique identifier of the user
         tests:
           - relationships:
-              to: ref('users')
+              to: ref('dim_users')
               field: user_id
       - name: role
         description: Role of the user in the team (e.g. member or maintainer)
       - name: state
         description: Indicates if the user is active or inactive in the team
 
-  - name: teams
+  - name: dim_teams
     description: This table has basic information about GitHub teams
 
     columns:
@@ -60,7 +60,7 @@ models:
       - name: permission
         description: Permission of the team in GitHub (e.g. push or pull)
 
-  - name: issues
+  - name: fct_issues
     description: This table has basic information about GitHub issues
 
     columns:
@@ -71,7 +71,7 @@ models:
         description: This is a unique identifier for an issue
         meta:
           metrics:
-            count:
+            count: 
               type: count_distinct
 
 
@@ -80,14 +80,14 @@ models:
         description: Foreign key to the pull requests table
         tests:
           - relationships:
-              to: ref('pull_requests')
+              to: ref('dim_pull_requests')
               field: pull_request_id
 
       - name: user_id
         description: Foreign key to the users table
         tests:
           - relationships:
-              to: ref('users')
+              to: ref('dim_users')
               field: user_id
         meta:
           metrics:
@@ -119,7 +119,7 @@ models:
       - name: body
         description: Body of the issue
 
-  - name: pull_requests
+  - name: fct_pull_requests
     description: This table has basic information about GitHub Pull Requests
 
     columns:
@@ -130,14 +130,14 @@ models:
         description: This is a unique identifier for a Pull Request
         meta:
           metrics:
-            count:
+            count: 
               type: count_distinct
 
       - name: user_id
         description: Foreign key to the users table
         tests:
           - relationships:
-              to: ref('users')
+              to: ref('dim_users')
               field: user_id
 
       - name: number

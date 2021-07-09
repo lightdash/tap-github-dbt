@@ -1,4 +1,4 @@
-{{ config(materialized='table') }}
+{{ config(materialized='ephemeral') }}
 
 WITH issues_users AS (
     SELECT * FROM {{ ref('stg_github__issue_users')}}
