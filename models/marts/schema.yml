@@ -148,7 +148,7 @@ models:
         meta:
           metrics:
             avg_num_days_between_issue_created_and_closed:
-            type: mean
+            type: average
 
   - name: fct_pull_requests
     description: This table has basic information about GitHub Pull Requests
@@ -215,4 +215,4 @@ models:
         meta:
           metrics:
             avg_num_days_between_pull_request_created_and_closed:
-              type: mean
+              type: average
