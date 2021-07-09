@@ -1,3 +1,4 @@
+{{ config(materialized='table') }}
 WITH team_membership AS (
     SELECT
        team_id,
@@ -10,7 +11,7 @@ users AS (
     SELECT
         user_id,
         LOWER(user_name) as user_name
-    FROM {{ ref('users') }}
+    FROM {{ ref('stg_users') }}
 )
 SELECT
     team_id,
