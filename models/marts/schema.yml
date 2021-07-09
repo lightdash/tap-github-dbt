@@ -10,6 +10,10 @@ models:
         tests:
           - unique
           - not_null
+        meta:
+          metrics:
+            num_user_ids:
+              type: count
 
       - name: user_name
         description: User's login name
@@ -47,8 +51,16 @@ models:
         tests:
           - unique
           - not_null
+        meta:
+          metrics:
+            num_team_ids:
+              type: count
       - name: organization_id
         description: Unique identifier of the GitHub organization where the team belongs to
+        meta:
+          metrics:
+            num_organization_ids:
+              type: count
       - name: name
         description: Screen name of the team
       - name: slug
@@ -62,6 +74,14 @@ models:
 
   - name: fct_issues
     description: This table has basic information about GitHub issues
+    meta:
+      joins:
+        - join: fct_pull_requests
+          sql_on: ${fct_issues.pull_request_id} = ${fct_pull_requests.pull_request_id}
+        - join: dim_users
+          sql_on: ${fct_issues.user_id} = ${dim_users.user_id}
+        - join: dim_teams
+          sql_on: ${fct_issues.team_id} = ${dim_teams.team_id}
 
     columns:
       - name: issue_id
@@ -71,9 +91,17 @@ models:
         description: This is a unique identifier for an issue
         meta:
           metrics:
-            count: 
-              type: count_distinct
-
+            num_issue_ids:
+              type: count
+            num_open_issues:
+              type: count
+              sql: "IF(${fct_issues.state} = 'open', ${issue_id}, NULL)"
+            num_closed_issues:
+              type: count
+              sql: "IF(${fct_issues.state} = 'closed', ${issue_id}, NULL)"
+            has_more_than_one_pr_linked:
+              type: boolean
+              sql: "IF(${fct_pull_requests.num_pull_request_ids} > 1, TRUE, FALSE)"
 
 
       - name: pull_request_id
@@ -89,17 +117,13 @@ models:
           - relationships:
               to: ref('dim_users')
               field: user_id
-        meta:
-          metrics:
-            total_users:
-              type: count_distinct
-
 
       - name: number
         description: Number of the issue in the repository
 
       - name: created_at
         description: Date (UTC) that the issue was created
+
 
       - name: updated_at
         description: Date (UTC) that the issue was updated
@@ -119,8 +143,27 @@ models:
       - name: body
         description: Body of the issue
 
+      - name: num_days_between_issue_created_and_closed
+        description: Number of days between the date when an issue was created and when it was closed (Only including issues that have been closed)
+        meta:
+          metrics:
+            avg_num_days_between_issue_created_and_closed:
+            type: mean
+
+      - name: created_at_week
+        description: Date of the first day of the week when the issue was created
+
+      - name: closed_at_week
+        description: Date of the first day of the week when the issue was closed (NULL if not closed)
+
   - name: fct_pull_requests
     description: This table has basic information about GitHub Pull Requests
+    meta:
+      joins:
+        - join: dim_users
+          sql_on: ${fct_pull_requests.user_id} = ${dim_users.user_id}
+        - join: dim_teams
+          sql_on: ${fct_pull_requests.team_id} = ${dim_teams.team_id}
 
     columns:
       - name: pull_request_id
@@ -129,9 +172,15 @@ models:
           - not_null
         description: This is a unique identifier for a Pull Request
         meta:
-          metrics:
-            count: 
-              type: count_distinct
+          num_pull_request_ids:
+            type: count
+          num_open_pull_requests:
+            type: count_distinct
+            sql: "IF(${fct_pull_requests.state} = 'open', ${pull_request_id}, NULL)"
+          num_closed_pull_requests:
+            type: count_distinct
+            sql: "IF(${fct_pull_requests.state} = 'closed', ${pull_request_id}, NULL)"
+
 
       - name: user_id
         description: Foreign key to the users table
@@ -166,3 +215,15 @@ models:
 
       - name: body
         description: Body of the PR
+
+      - name: num_days_between_pull_request_created_and_merged
+        description: Number of days between the date when a pull request was created and when it was merged (only including PRs that have been merged)
+        meta:
+          metrics:
+            avg_num_days_between_pull_request_created_and_closed:
+              type: mean
+      - name: created_at_week
+        description: Date of the first day of the week when the pull request was created
+
+      - name: merged_at_week
+        description: Date of the first day of the week when the pull request was merged (NULL if not merged)
