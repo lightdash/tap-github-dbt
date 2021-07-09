@@ -143,13 +143,6 @@ models:
       - name: body
         description: Body of the issue
 
-      - name: num_days_between_issue_created_and_closed
-        description: Number of days between the date when an issue was created and when it was closed (Only including issues that have been closed)
-        meta:
-          metrics:
-            avg_num_days_between_issue_created_and_closed:
-            type: mean
-
   - name: fct_pull_requests
     description: This table has basic information about GitHub Pull Requests
     meta:
@@ -209,10 +202,3 @@ models:
 
       - name: body
         description: Body of the PR
-
-      - name: num_days_between_pull_request_created_and_merged
-        description: Number of days between the date when a pull request was created and when it was merged (only including PRs that have been merged)
-        meta:
-          metrics:
-            avg_num_days_between_pull_request_created_and_closed:
-              type: mean
