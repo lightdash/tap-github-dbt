@@ -108,7 +108,7 @@ models:
         description: Foreign key to the pull requests table
         tests:
           - relationships:
-              to: ref('dim_pull_requests')
+              to: ref('fct_pull_requests')
               field: pull_request_id
 
       - name: user_id
@@ -149,12 +149,6 @@ models:
           metrics:
             avg_num_days_between_issue_created_and_closed:
             type: mean
-
-      - name: created_at_week
-        description: Date of the first day of the week when the issue was created
-
-      - name: closed_at_week
-        description: Date of the first day of the week when the issue was closed (NULL if not closed)
 
   - name: fct_pull_requests
     description: This table has basic information about GitHub Pull Requests
@@ -222,8 +216,3 @@ models:
           metrics:
             avg_num_days_between_pull_request_created_and_closed:
               type: mean
-      - name: created_at_week
-        description: Date of the first day of the week when the pull request was created
-
-      - name: merged_at_week
-        description: Date of the first day of the week when the pull request was merged (NULL if not merged)
