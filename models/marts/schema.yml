@@ -99,9 +99,6 @@ models:
             num_closed_issues:
               type: count
               sql: "IF(${fct_issues.state} = 'closed', ${issue_id}, NULL)"
-            has_more_than_one_pr_linked:
-              type: boolean
-              sql: "IF(${fct_pull_requests.num_pull_request_ids} > 1, TRUE, FALSE)"
 
 
       - name: pull_request_id
