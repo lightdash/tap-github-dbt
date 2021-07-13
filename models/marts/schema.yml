@@ -117,14 +117,28 @@ models:
         description: Number of the issue in the repository
 
       - name: created_at
+        description: Timestamp (UTC) that the issue was created
+
+      - name: created_at_date
         description: Date (UTC) that the issue was created
 
+      - name: created_at_week
+        description: Week number (week starting Sunday) that the issue was created
 
       - name: updated_at
+        description: Timestamp (UTC) that the issue was updated
+
+      - name: updated_at_date
         description: Date (UTC) that the issue was updated
 
       - name: closed_at
+        description: Timestamp (UTC) that the issue was closed
+
+      - name: closed_at_date
         description: Date (UTC) that the issue was closed
+
+      - name: closed_at_week
+        description: Week number (week starting Sunday) that the issue was closed
 
       - name: state
         description: Indicates either if the issue is open or closed
@@ -179,16 +193,28 @@ models:
         description: Number of the PR in the repository
 
       - name: created_at
+        description: Timestamp (UTC) that the PR was created
+
+      - name: created_at_date
         description: Date (UTC) that the PR was created
 
       - name: updated_at
+        description: Timestamp (UTC) that the PR was updated
+
+      - name: updated_at_date
         description: Date (UTC) that the PR was updated
 
       - name: closed_at
+        description: Timestamp (UTC) that the PR was closed
+
+      - name: closed_at_date
         description: Date (UTC) that the PR was closed
 
       - name: merged_at
-        description: Date (UTC) that the PR was merged
+        description: Timestamp (UTC) that the PR was closed
+
+      - name: merged_at_date
+        description: Date (UTC) that the PR was closed
 
       - name: state
         description: Indicates either if the PR is open or closed
